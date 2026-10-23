@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Checkout | RJ Fashion</title>
+  <meta name="description" content="Complete your purchase securely. Enter shipping address and choose your payment method.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-lock"></i> 256-Bit SSL Encrypted Secure Checkout</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="about.html" class="top-bar-link"><i class="fa-regular fa-circle-question"></i> Help Center</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+          RJ <span>Fashion</span>
+        </a>
+
+        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-shield-halved text-primary"></i> 100% Safe & Secure Checkout
+        </div>
+
+        <div class="header-actions">
+          <a href="cart.html" class="btn btn-outline btn-sm">
+            <i class="fa-solid fa-arrow-left"></i> Return to Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Main Content -->
+  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+      <a href="index.html">Home</a>
+      <span class="separator">/</span>
+      <a href="cart.html">Cart</a>
+      <span class="separator">/</span>
+      <span class="active">Checkout</span>
+    </div>
+
+    <div style="background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.9rem 1.25rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.85rem; font-size: 0.9rem;">
+      <i class="fa-solid fa-shield-halved" style="color: var(--success); font-size: 1.35rem;"></i>
+      <div>
+        <strong>Verified Order Protection:</strong> Real-time Cloud Firestore inventory sync and instant receipt confirmation.
+      </div>
+    </div>
+
+    <!-- Checkout Two-Column Layout -->
+    <div class="checkout-layout">
+      <!-- Left Column: Checkout Multi-Step Form -->
+      <form id="checkoutForm" novalidate>
+        <!-- Step 1: Customer Contact Info -->
+        <div class="checkout-step">
+          <h3 class="step-title">
+            <span class="step-number">1</span> Customer Information
+          </h3>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="checkoutFirstName">First Name *</label>
+              <input type="text" id="checkoutFirstName" class="form-input" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkoutLastName">Last Name *</label>
+              <input type="text" id="checkoutLastName" class="form-input" placeholder="Doe" required>
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="checkoutEmail">Email Address *</label>
+              <input type="email" id="checkoutEmail" class="form-input" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkoutPhone">Phone Number *</label>
+              <input type="tel" id="checkoutPhone" class="form-input" placeholder="+1 (555) 012-3456" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Shipping Destination Address -->
+        <div class="checkout-step">
+          <h3 class="step-title">
+            <span class="step-number">2</span> Delivery Address
+          </h3>
+          <div class="form-group">
+            <label class="form-label" for="checkoutAddress">Street Address *</label>
+            <input type="text" id="checkoutAddress" class="form-input" placeholder="123 Innovation Way, Apt 4B" required>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="checkoutCity">City *</label>
+              <input type="text" id="checkoutCity" class="form-input" placeholder="New York" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkoutState">State / Province *</label>
+              <input type="text" id="checkoutState" class="form-input" placeholder="NY" required>
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="checkoutZip">Postal / ZIP Code *</label>
+              <input type="text" id="checkoutZip" class="form-input" placeholder="10001" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkoutCountry">Country *</label>
+              <select id="checkoutCountry" class="form-input">
+                <option value="US">United States</option>
+                <option value="UK">United Kingdom</option>
+                <option value="CA">Canada</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <option value="IN">India</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Payment Method Selection -->
+        <div class="checkout-step">
+          <h3 class="step-title">
+            <span class="step-number">3</span> Payment Method
+          </h3>
+
+          <div class="payment-options-grid">
+            <div class="payment-method-card active" data-method="card">
+              <i class="fa-regular fa-credit-card"></i>
+              <div class="payment-method-title">Credit / Debit Card</div>
+            </div>
+            <div class="payment-method-card" data-method="upi">
+              <i class="fa-solid fa-qrcode"></i>
+              <div class="payment-method-title">UPI / Instant QR</div>
+            </div>
+            <div class="payment-method-card" data-method="cod">
+              <i class="fa-solid fa-money-bill-wave"></i>
+              <div class="payment-method-title">Cash on Delivery</div>
+            </div>
+          </div>
+
+          <!-- Card Form Inputs -->
+          <div id="cardDetailsSection" class="card-details-box">
+            <div class="form-group">
+              <label class="form-label" for="cardHolder">Cardholder Name</label>
+              <input type="text" id="cardHolder" class="form-input" placeholder="Johnathan Doe" value="Johnathan Doe">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cardNumber">Card Number</label>
+              <input type="text" id="cardNumber" class="form-input" placeholder="4242 4242 4242 4242" value="4242 4242 4242 4242" maxlength="19">
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="cardExpiry">Expiration Date</label>
+                <input type="text" id="cardExpiry" class="form-input" placeholder="MM/YY" value="12/28" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cardCvv">Security CVV</label>
+                <input type="password" id="cardCvv" class="form-input" placeholder="CVC" value="888" maxlength="4">
+              </div>
+            </div>
+          </div>
+
+          <!-- UPI Details Box (Hidden initially) -->
+          <div id="upiDetailsSection" class="card-details-box" style="display: none; text-align: center;">
+            <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-muted);">
+              Scan this simulated QR code using any UPI app (Google Pay, PhonePe, Paytm, BHIM):
+            </p>
+            <div style="background: #ffffff; padding: 1.5rem; display: inline-block; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border);">
+              <i class="fa-solid fa-qrcode" style="font-size: 7rem; color: var(--text-main);"></i>
+              <div style="font-weight: 700; font-size: 0.85rem; margin-top: 0.5rem; color: var(--primary);">rjfashion.merchant@upi</div>
+            </div>
+          </div>
+
+          <!-- Cash On Delivery Box (Hidden initially) -->
+          <div id="codDetailsSection" class="card-details-box" style="display: none;">
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              <i class="fa-solid fa-circle-check" style="color: var(--success);"></i> You will pay in cash or via card reader upon arrival of your parcel. Please have exact change ready.
+            </p>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" id="placeOrderBtn" style="width: 100%; font-size: 1.1rem; padding: 1rem;">
+          <i class="fa-solid fa-lock"></i> Place Order & Pay Now
+        </button>
+      </form>
+
+      <!-- Right Column: Sticky Order Summary -->
+      <aside class="summary-card">
+        <h3 class="summary-title">Order Breakdown</h3>
+        
+        <!-- Cart Line Items -->
+        <div id="checkoutSummaryItems" style="max-height: 280px; overflow-y: auto; margin-bottom: 1.5rem; padding-right: 0.5rem;">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Totals Breakdown -->
+        <div class="summary-rows">
+          <div class="summary-row">
+            <span class="text-muted">Subtotal</span>
+            <strong id="checkoutSubtotal">$0.00</strong>
+          </div>
+          <div class="summary-row" id="checkoutDiscountRow" style="display: none; color: var(--success);">
+            <span>Discount Applied</span>
+            <strong id="checkoutDiscount">-$0.00</strong>
+          </div>
+          <div class="summary-row">
+            <span class="text-muted">Standard Shipping</span>
+            <strong id="checkoutShipping">$0.00</strong>
+          </div>
+          <div class="summary-row">
+            <span class="text-muted">Estimated Tax</span>
+            <strong id="checkoutTax">$0.00</strong>
+          </div>
+          <div class="summary-row total-row">
+            <span>Total to Pay</span>
+            <span class="text-primary" id="checkoutTotal">$0.00</span>
+          </div>
+        </div>
+
+        <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">
+          <i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i> By placing your order, you agree to RJ Fashion's Terms of Sale and verified delivery terms.
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 RJ Fashion Inc. All rights reserved.</div>
+        <div class="payment-methods">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-paypal"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

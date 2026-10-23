@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RJ Fashion | Premium Modern E-Commerce Store</title>
+  <meta name="description" content="RJ Fashion is your ultimate destination for curated premium electronics, fashion, smart watches, and home essentials. Free worldwide shipping on orders over $50.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <!-- Font Awesome CDN Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-truck-fast"></i> Free shipping on orders over $50</span>
+        <span class="top-bar-promo"><i class="fa-solid fa-bolt"></i> Use code <strong>RJ20</strong> for 20% OFF</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="about.html" class="top-bar-link"><i class="fa-regular fa-circle-question"></i> Help & FAQ</a>
+        <a href="orders.html" class="top-bar-link"><i class="fa-solid fa-location-dot"></i> Track Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="header">
+    <div class="header-main">
+      <div class="container">
+        <!-- Logo -->
+        <a href="index.html" class="logo" id="brandLogo">
+          <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+          RJ <span>Fashion</span>
+        </a>
+
+        <!-- Live Search Bar -->
+        <div class="search-container">
+          <form class="search-form" id="globalSearchForm">
+            <input type="text" class="search-input" id="globalSearchInput" placeholder="Search 1,000+ premium products, brands..." autocomplete="off">
+            <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+
+        <!-- Action Icons -->
+        <div class="header-actions">
+          <!-- Wishlist Icon -->
+          <a href="wishlist.html" class="header-action-btn" id="headerWishlistBtn" aria-label="Wishlist">
+            <div class="header-icon-wrap">
+              <i class="fa-regular fa-heart"></i>
+              <span class="header-badge wishlist-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">Favorites</span>
+              <span class="header-action-label">Wishlist</span>
+            </div>
+          </a>
+
+          <!-- Cart Icon -->
+          <a href="cart.html" class="header-action-btn" id="headerCartBtn" aria-label="Shopping Cart">
+            <div class="header-icon-wrap">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="header-badge cart-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">My Cart</span>
+              <span class="header-action-label">View</span>
+            </div>
+          </a>
+
+          <!-- User Account Menu -->
+          <div class="user-menu-container" id="userMenuWrap">
+            <!-- Rendered dynamically by main.js -->
+          </div>
+
+          <!-- Mobile Nav Toggle -->
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation Bar -->
+    <nav class="nav-bar">
+      <div class="container">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+          <a href="products.html" class="nav-link"><i class="fa-solid fa-border-all"></i> All Products</a>
+          <a href="products.html?category=Electronics" class="nav-link">Electronics</a>
+          <a href="products.html?category=Fashion" class="nav-link">Fashion</a>
+          <a href="products.html?category=Watches" class="nav-link">Watches</a>
+          <a href="products.html?category=Home%20%26%20Kitchen" class="nav-link">Home & Living</a>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div>
+          <a href="admin.html" class="admin-badge-link"><i class="fa-solid fa-shield-halved"></i> Admin Portal</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+        RJ <span>Fashion</span>
+      </a>
+      <button class="btn-icon" id="closeDrawerBtn" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="mobile-drawer-body">
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="products.html" class="mobile-nav-link"><i class="fa-solid fa-border-all"></i> All Products</a>
+        <a href="products.html?category=Electronics" class="mobile-nav-link"><i class="fa-solid fa-laptop"></i> Electronics</a>
+        <a href="products.html?category=Fashion" class="mobile-nav-link"><i class="fa-solid fa-shirt"></i> Fashion & Apparel</a>
+        <a href="products.html?category=Watches" class="mobile-nav-link"><i class="fa-solid fa-clock"></i> Luxury Watches</a>
+        <a href="products.html?category=Home%20%26%20Kitchen" class="mobile-nav-link"><i class="fa-solid fa-couch"></i> Home & Living</a>
+        <a href="cart.html" class="mobile-nav-link"><i class="fa-solid fa-cart-shopping"></i> My Cart</a>
+        <a href="wishlist.html" class="mobile-nav-link"><i class="fa-regular fa-heart"></i> Wishlist</a>
+        <a href="orders.html" class="mobile-nav-link"><i class="fa-solid fa-box"></i> Order History</a>
+        <a href="account.html" class="mobile-nav-link"><i class="fa-regular fa-user"></i> My Account</a>
+        <a href="admin.html" class="mobile-nav-link"><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</a>
+        <a href="about.html" class="mobile-nav-link"><i class="fa-solid fa-circle-info"></i> About Us</a>
+        <a href="contact.html" class="mobile-nav-link"><i class="fa-regular fa-envelope"></i> Contact Us</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main Homepage Content -->
+  <main>
+    <!-- Hero Banner Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-tag">
+              <i class="fa-solid fa-heart"></i> GEARS FOR EVERYDAY LIVING · EST. 2026
+            </div>
+            <h1 class="hero-title">
+              Simple Essentials. <span>Made To Last.</span>
+            </h1>
+            <p class="hero-subtitle">
+              Curated utilitarian goods, honest apparel, precision electronics, and everyday accessories crafted with timeless care.
+            </p>
+            <div class="hero-buttons">
+              <a href="products.html" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-bag-shopping"></i> Explore Collection
+              </a>
+              <a href="products.html?category=Electronics" class="btn btn-outline btn-lg">
+                Featured Tech <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="hero-image-wrap">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80" alt="RJ Fashion Premium Sound" class="hero-main-img">
+            
+            <!-- Floating Highlights -->
+            <div class="hero-floating-card card-bottom">
+              <div class="floating-icon"><i class="fa-solid fa-heart"></i></div>
+              <div>
+                <strong style="font-size: 0.9rem; display: block;">100% Authentic Craft</strong>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Honest Quality Guaranteed</span>
+              </div>
+            </div>
+
+            <div class="hero-floating-card card-top">
+              <div class="floating-icon"><i class="fa-solid fa-truck-fast"></i></div>
+              <div>
+                <strong style="font-size: 0.9rem; display: block;">Express Delivery</strong>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Within 24-48 Hours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Features / Value Propositions -->
+    <section class="features-section">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-icon-wrap"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="feature-info">
+              <h4>Free Global Shipping</h4>
+              <p>On all orders over $50</p>
+            </div>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="feature-info">
+              <h4>Secure Checkout</h4>
+              <p>256-bit encrypted payments</p>
+            </div>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon-wrap"><i class="fa-solid fa-rotate-left"></i></div>
+            <div class="feature-info">
+              <h4>30-Day Easy Returns</h4>
+              <p>Hassle-free money back</p>
+            </div>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon-wrap"><i class="fa-solid fa-headset"></i></div>
+            <div class="feature-info">
+              <h4>24/7 Dedicated Support</h4>
+              <p>Live chat & email assistance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Categories Grid -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-subtitle">Browse by Category</div>
+            <h2 class="section-title">Explore Curated Collections</h2>
+          </div>
+          <a href="products.html" class="btn btn-outline-primary">
+            View All Categories <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="category-grid" id="homeCategoryGrid">
+          <!-- Dynamically populated by products.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products Showcase -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-subtitle">Handpicked For You</div>
+            <h2 class="section-title">Featured Products</h2>
+          </div>
+          <a href="products.html" class="btn btn-primary">
+            View All Products <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="products-grid" id="homeFeaturedGrid">
+          <!-- Dynamically populated by products.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Deal of the Week Countdown Banner -->
+    <section class="container">
+      <div class="deal-section">
+        <div class="deal-grid">
+          <div class="deal-content">
+            <span class="badge badge-warning" style="margin-bottom: 1rem;"><i class="fa-solid fa-fire"></i> Limited Flash Deal</span>
+            <h2>Vanguard Chrono Smartwatch Series 9</h2>
+            <p>
+              Aerospace aluminum chassis, Always-On AMOLED Retina display, and 50m water resistance. Save 22% this week only.
+            </p>
+            <div class="deal-countdown" id="dealCountdown">
+              <div class="countdown-box">
+                <span class="countdown-num" id="countDays">04</span>
+                <span class="countdown-label">Days</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="countHours">18</span>
+                <span class="countdown-label">Hours</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="countMinutes">42</span>
+                <span class="countdown-label">Mins</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="countSeconds">30</span>
+                <span class="countdown-label">Secs</span>
+              </div>
+            </div>
+            <a href="product-details.html?id=sn-102" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-bag-shopping"></i> Claim Deal Now ($249.00)
+            </a>
+          </div>
+          <div class="deal-img-wrap">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80" alt="Vanguard Smartwatch Deal">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Best Sellers & Trending Section -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-subtitle">Top Rated Products</div>
+            <h2 class="section-title">Best Sellers</h2>
+          </div>
+          <a href="products.html" class="btn btn-outline">
+            See More <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="products-grid" id="homeBestSellersGrid">
+          <!-- Dynamically populated by products.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-subtitle">Fresh Drops</div>
+            <h2 class="section-title">New Arrivals</h2>
+          </div>
+          <a href="products.html?category=all" class="btn btn-primary">
+            Explore All New <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="products-grid" id="homeNewArrivalsGrid">
+          <!-- Dynamically populated by products.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews / Testimonials -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" style="justify-content: center; text-align: center;">
+          <div class="section-title-wrap">
+            <div class="section-subtitle">Trusted Worldwide</div>
+            <h2 class="section-title">What Our Customers Say</h2>
+          </div>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "The Aura Pro headphones completely transformed my daily commute. The active noise cancelling is pristine and the battery life is truly 40 hours as advertised. RJ Fashion shipped them within 24 hours!"
+            </p>
+            <div class="testimonial-user">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80" alt="Sarah Mitchell" class="testimonial-avatar">
+              <div>
+                <div class="testimonial-name">Sarah Mitchell</div>
+                <div class="testimonial-role">Verified Buyer · London, UK</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Phenomenal build quality on the Lumix Espresso machine. I get silky microfoam and dense crema every single morning. Best e-commerce purchase I have made in years."
+            </p>
+            <div class="testimonial-user">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="David Zhang" class="testimonial-avatar">
+              <div>
+                <div class="testimonial-name">David Zhang</div>
+                <div class="testimonial-role">Verified Buyer · San Francisco, CA</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Flawless checkout experience, clean interface, and responsive customer service when I asked about sizing for the Apex sneakers. 10/10 recommendation!"
+            </p>
+            <div class="testimonial-user">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Amelia Hayes" class="testimonial-avatar">
+              <div>
+                <div class="testimonial-name">Amelia Hayes</div>
+                <div class="testimonial-role">Verified Buyer · Sydney, Australia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Subscription Banner -->
+    <section class="container" style="margin-top: 4rem;">
+      <div class="newsletter-section">
+        <div class="newsletter-content">
+          <h2>Join the RJ Fashion Insider Club</h2>
+          <p>Subscribe for exclusive product drops, member-only discounts, and private seasonal sales directly in your inbox.</p>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Enter your email address..." required>
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+            RJ <span>Fashion</span>
+          </a>
+          <p>
+            RJ Fashion is an independent modern retail destination delivering premium electronics, lifestyle essentials, and apparel with verified global authenticity.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Shop</h4>
+          <div class="footer-links">
+            <a href="products.html">All Products</a>
+            <a href="products.html?category=Electronics">Electronics & Audio</a>
+            <a href="products.html?category=Watches">Luxury Watches</a>
+            <a href="products.html?category=Fashion">Apparel & Bags</a>
+            <a href="products.html?category=Footwear">Performance Footwear</a>
+            <a href="products.html?category=Home%20%26%20Kitchen">Home & Kitchen</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Service</h4>
+          <div class="footer-links">
+            <a href="account.html">My Account</a>
+            <a href="orders.html">Track Order</a>
+            <a href="cart.html">View Cart</a>
+            <a href="wishlist.html">Saved Wishlist</a>
+            <a href="about.html">Shipping & Returns</a>
+            <a href="contact.html">Help Center & FAQ</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Store Information</h4>
+          <div class="footer-links">
+            <a href="about.html">About RJ Fashion</a>
+            <a href="admin.html">Admin Dashboard</a>
+            <a href="contact.html">Store Locator</a>
+            <a href="about.html">Privacy Policy</a>
+            <a href="about.html">Terms of Service</a>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem;">
+              <i class="fa-solid fa-envelope"></i> support@rjfashion.com<br>
+              <i class="fa-solid fa-phone"></i> +1 (800) 555-RJFASHION
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div>
+          &copy; 2026 RJ Fashion Inc. All rights reserved. Built with pure HTML5, CSS3 & Modern JavaScript.
+        </div>
+        <div class="payment-methods">
+          <i class="fa-brands fa-cc-visa" title="Visa"></i>
+          <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+          <i class="fa-brands fa-cc-amex" title="Amex"></i>
+          <i class="fa-brands fa-cc-paypal" title="PayPal"></i>
+          <i class="fa-brands fa-cc-apple-pay" title="Apple Pay"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Modules -->
+  <script src="js/main.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

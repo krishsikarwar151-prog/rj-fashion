@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard & Inventory Portal | RJ Fashion</title>
+  <meta name="description" content="RJ Fashion Store Management Portal. Manage catalog products, update live order statuses, view financial performance metrics, and inventory health.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .admin-stat-card {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--border-dark);
+      box-shadow: var(--shadow-tactile);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .admin-stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1.5px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .admin-stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.1;
+      font-family: var(--font-stamp);
+    }
+    .admin-stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-family: var(--font-stamp);
+    }
+    .admin-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--border-dark);
+      margin-bottom: 2rem;
+    }
+    .admin-tab-btn {
+      padding: 0.85rem 1.5rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .admin-tab-btn.active, .admin-tab-btn:hover {
+      color: var(--text-main);
+      background: #ffffff;
+      border-bottom: 3px solid var(--primary);
+    }
+    .admin-panel {
+      display: none;
+    }
+    .admin-panel.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+    .admin-table-container {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--border-dark);
+      overflow-x: auto;
+      box-shadow: var(--shadow-tactile);
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .admin-table th {
+      background: var(--bg-alt);
+      padding: 1rem 1.25rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--text-main);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      font-family: var(--font-stamp);
+      border-bottom: 1.5px solid var(--border-dark);
+    }
+    .admin-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      font-size: 0.9rem;
+    }
+    .admin-table tr:hover {
+      background: #f8fafc;
+    }
+    @media (max-width: 992px) {
+      .admin-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 576px) {
+      .admin-stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-lock"></i> RJ Fashion Administrative Back-Office Portal</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="index.html" class="top-bar-link"><i class="fa-solid fa-store"></i> View Live Storefront</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          RJ Fashion <span>Admin</span>
+        </a>
+
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <a href="index.html" class="btn btn-outline btn-sm">
+            <i class="fa-solid fa-arrow-left"></i> Customer Store
+          </a>
+          <button type="button" class="btn btn-primary btn-sm" id="btnOpenAddProductModal">
+            <i class="fa-solid fa-plus"></i> Add New Product
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" id="btnAdminLogout" style="color: #ef4444; border-color: #fca5a5;" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Main Workspace -->
+  <main class="container" id="adminDashboardWrap" style="padding-top: 2rem; padding-bottom: 5rem;">
+    <!-- Architecture & Security Notice Banner -->
+    <div class="demo-payment-alert" style="margin-bottom: 2rem;">
+      <i class="fa-solid fa-shield-halved" style="font-size: 1.5rem;"></i>
+      <div>
+        <strong>Demonstration Back-Office:</strong> State changes (Product CRUD & Order Status updates) are synchronized directly in your browser's LocalStorage. In enterprise deployments, authorization is secured on the backend via Firebase Admin / Supabase Row-Level Security (RLS) with JWT authentication.
+      </div>
+    </div>
+
+    <!-- KPI Metric Cards -->
+    <div class="admin-stats-grid">
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+        <div>
+          <div class="admin-stat-num" id="adminStatRevenue">$0.00</div>
+          <div class="admin-stat-label">Total Store Revenue</div>
+        </div>
+      </div>
+
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon" style="background:#e0e7ff; color:#4338ca;"><i class="fa-solid fa-box-open"></i></div>
+        <div>
+          <div class="admin-stat-num" id="adminStatOrders">0</div>
+          <div class="admin-stat-label">Total Orders Placed</div>
+        </div>
+      </div>
+
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon" style="background:#ecfdf5; color:#059669;"><i class="fa-solid fa-boxes-stacked"></i></div>
+        <div>
+          <div class="admin-stat-num" id="adminStatProducts">0</div>
+          <div class="admin-stat-label">Catalog Products</div>
+        </div>
+      </div>
+
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon" style="background:#fef3c7; color:#d97706;"><i class="fa-solid fa-warehouse"></i></div>
+        <div>
+          <div class="admin-stat-num" id="adminStatStock">0 In Stock</div>
+          <div class="admin-stat-label">Inventory Health</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Workspace Tabs Navigation -->
+    <div class="admin-tabs">
+      <button class="admin-tab-btn active" data-panel="panelProducts">
+        <i class="fa-solid fa-boxes-stacked"></i> Product Inventory
+      </button>
+      <button class="admin-tab-btn" data-panel="panelOrders">
+        <i class="fa-solid fa-truck-ramp-box"></i> Order Management
+      </button>
+      <button class="admin-tab-btn" data-panel="panelFirebase">
+        <i class="fa-solid fa-fire" style="color: #f59e0b;"></i> Cloud Firestore
+      </button>
+      <button class="admin-tab-btn" data-panel="panelData">
+        <i class="fa-solid fa-database"></i> Demo Tools & Backup
+      </button>
+    </div>
+
+    <!-- Panel 1: Product Inventory -->
+    <section class="admin-panel active" id="panelProducts">
+      <!-- Search & Filters Toolbar -->
+      <div class="catalog-toolbar" style="margin-bottom: 1.5rem;">
+        <div style="display: flex; gap: 1rem; align-items: center; flex: 1; max-width: 600px;">
+          <input type="text" id="adminProductSearch" class="form-input" placeholder="Search catalog by name, category, or SKU..." style="font-size: 0.875rem;">
+          <select id="adminCategoryFilter" class="sort-select">
+            <option value="all">All Categories</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Watches">Watches</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Footwear">Footwear</option>
+            <option value="Home & Kitchen">Home & Kitchen</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('btnOpenAddProductModal').click()">
+          <i class="fa-solid fa-plus"></i> New Product
+        </button>
+      </div>
+
+      <!-- Products Table -->
+      <div class="admin-table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Rating</th>
+              <th>Badge</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminProductsTbody">
+            <!-- Dynamically populated by admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Panel 2: Orders Management -->
+    <section class="admin-panel" id="panelOrders">
+      <div class="admin-table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total Amount</th>
+              <th>Live Status</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody id="adminOrdersTbody">
+            <!-- Dynamically populated by admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Panel 3: Firebase Cloud Firestore Database -->
+    <section class="admin-panel" id="panelFirebase">
+      <div class="account-main-card" style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <i class="fa-solid fa-fire" style="color: #f59e0b;"></i> Firebase Cloud Firestore Database
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+              Connect your Google Cloud Firebase project for real-time cloud persistence of products, orders, and customer accounts.
+            </p>
+          </div>
+          <div id="firebaseStatusBadgeWrap">
+            <span class="badge badge-warning" id="firebaseLiveStatusBadge">
+              <i class="fa-solid fa-circle-dot"></i> Local Storage Mode (Offline)
+            </span>
+          </div>
+        </div>
+
+        <!-- Quick Import Paste Box -->
+        <div style="background: var(--bg-alt); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem; border: 1px solid var(--border);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+            <label class="form-label" style="margin: 0; font-weight: 600;">
+              <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--primary);"></i> Quick Import: Paste Firebase Config Code or JSON
+            </label>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Paste your <code>firebaseConfig</code> code snippet here</span>
+          </div>
+          <textarea id="fbPasteSnippet" class="form-input" rows="3" placeholder='Paste from Firebase Console (e.g. const firebaseConfig = { apiKey: "...", projectId: "..." }; or raw JSON)' style="font-family: monospace; font-size: 0.82rem; margin-bottom: 0.75rem;"></textarea>
+          <div style="display: flex; gap: 0.75rem;">
+            <button type="button" class="btn btn-secondary btn-sm" id="btnAutoParseSnippet">
+              <i class="fa-solid fa-arrow-down-wide-short"></i> Auto-Detect & Fill Form
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="btnClearSnippet">Clear</button>
+          </div>
+        </div>
+
+        <!-- Firebase Config Form -->
+        <form id="firebaseConfigForm">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="fbProjectId">Project ID *</label>
+              <input type="text" id="fbProjectId" class="form-input" placeholder="e.g. rj-fashion-store" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="fbApiKey">Web API Key *</label>
+              <input type="password" id="fbApiKey" class="form-input" placeholder="e.g. AIzaSyB2c3d..." required>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="fbAuthDomain">Auth Domain (Optional)</label>
+              <input type="text" id="fbAuthDomain" class="form-input" placeholder="your-project.firebaseapp.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="fbStorageBucket">Storage Bucket (Optional)</label>
+              <input type="text" id="fbStorageBucket" class="form-input" placeholder="your-project.appspot.com">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="fbSenderId">Messaging Sender ID (Optional)</label>
+              <input type="text" id="fbSenderId" class="form-input" placeholder="e.g. 1092837465">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="fbAppId">Firebase App ID (Optional)</label>
+              <input type="text" id="fbAppId" class="form-input" placeholder="e.g. 1:1092837465:web:abcd...">
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; align-items: center; margin-top: 1.5rem; flex-wrap: wrap;">
+            <button type="submit" class="btn btn-primary" id="btnSaveFirebaseConfig">
+              <i class="fa-solid fa-plug"></i> Save & Connect to Firebase
+            </button>
+            <button type="button" class="btn btn-secondary" id="btnTestFirebaseConn">
+              <i class="fa-solid fa-circle-nodes"></i> Test Connection
+            </button>
+            <button type="button" class="btn btn-outline" id="btnDisconnectFirebase">
+              <i class="fa-solid fa-power-off"></i> Disconnect (Use Local)
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Live Cloud Firestore Metrics Card -->
+      <div class="account-main-card" id="firebaseStatsCard" style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+          <h4 style="margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-database" style="color: var(--primary);"></i> Live Cloud Firestore Collections
+          </h4>
+          <button type="button" class="btn btn-outline btn-sm" id="btnRefreshFirebaseStats">
+            <i class="fa-solid fa-rotate"></i> Refresh Counts
+          </button>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
+          <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); text-align: center;">
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Products in Cloud</div>
+            <div style="font-size: 1.75rem; font-weight: 700; color: var(--primary);" id="fbStatProducts">--</div>
+          </div>
+          <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); text-align: center;">
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Orders in Cloud</div>
+            <div style="font-size: 1.75rem; font-weight: 700; color: var(--success);" id="fbStatOrders">--</div>
+          </div>
+          <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); text-align: center;">
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Users / Accounts</div>
+            <div style="font-size: 1.75rem; font-weight: 700; color: #8b5cf6;" id="fbStatUsers">--</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cloud Sync Actions Card -->
+      <div class="account-main-card" style="margin-bottom: 2rem;">
+        <h4 style="margin-bottom: 0.5rem;"><i class="fa-solid fa-cloud-arrow-up"></i> Cloud Synchronization Operations</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+          Migrate your local catalog, demo accounts, and historical orders directly into Cloud Firestore:
+        </p>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button type="button" class="btn btn-secondary" id="btnSyncToFirestore">
+            <i class="fa-solid fa-cloud-arrow-up"></i> 1-Click Upload Local Store to Firestore
+          </button>
+          <button type="button" class="btn btn-outline" id="btnPullFromFirestore">
+            <i class="fa-solid fa-cloud-arrow-down"></i> Pull Cloud Data to Local Cache
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick 1-Minute Setup Guide & Security Rules -->
+      <div class="account-main-card" style="background: var(--bg-alt); border-style: dashed;">
+        <h4 style="margin-bottom: 0.75rem;"><i class="fa-solid fa-lightbulb" style="color: #f59e0b;"></i> Firebase 3-Step Setup Guide</h4>
+        <ol style="margin-left: 1.25rem; font-size: 0.9rem; color: var(--text-main); display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <li>Visit the <strong><a href="https://console.firebase.google.com" target="_blank" style="color: var(--primary); text-decoration: underline;">Firebase Console</a></strong> and click <strong>Create a Project</strong> (Free Spark plan).</li>
+          <li>In your Project Overview, click the Web icon <code>&lt;/&gt;</code> to register a Web App. Copy the <code>firebaseConfig</code> snippet and paste it into the <em>Quick Import</em> box above.</li>
+          <li>In the left sidebar, navigate to <strong>Build &gt; Firestore Database</strong>, click <strong>Create Database</strong>, and set Security Rules to Test Mode:</li>
+        </ol>
+
+        <!-- Firestore Rules Code Box -->
+        <div style="background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; position: relative;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Firestore Security Rules (Test Mode)</span>
+            <button type="button" class="btn btn-outline btn-sm" id="btnCopyFirestoreRules" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">
+              <i class="fa-regular fa-copy"></i> Copy Rules
+            </button>
+          </div>
+          <pre style="margin: 0; font-family: monospace; font-size: 0.8rem; color: var(--text-main); overflow-x: auto; line-height: 1.5;" id="firestoreRulesSnippet">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel 4: Demo Tools & Backup -->
+    <section class="admin-panel" id="panelData">
+      <div class="account-main-card">
+        <h3 style="margin-bottom: 1rem;">Demo Store Maintenance</h3>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">
+          These management tools allow you to restore default sample products, demo orders, and reset LocalStorage if you made experimental changes.
+        </p>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button type="button" class="btn btn-outline" id="btnResetStoreData" style="color: var(--danger); border-color: #fca5a5;">
+            <i class="fa-solid fa-rotate-left"></i> Restore Default Seed Catalog & Orders
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Add / Edit Product Modal -->
+  <div class="modal-backdrop" id="productFormModal">
+    <div class="modal-content" style="max-width: 680px; padding: 2.25rem;">
+      <button class="modal-close-btn" id="btnCloseProductModal">&times;</button>
+      <h3 id="prodModalTitle" style="margin-bottom: 1.5rem;">Add New Product</h3>
+
+      <form id="productForm">
+        <input type="hidden" id="prodFormId">
+
+        <div class="form-group">
+          <label class="form-label" for="prodFormName">Product Title *</label>
+          <input type="text" id="prodFormName" class="form-input" placeholder="e.g. Apex Aero Performance Sneakers" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="prodFormCategory">Category *</label>
+            <select id="prodFormCategory" class="form-input" required>
+              <option value="Electronics">Electronics</option>
+              <option value="Watches">Watches</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Footwear">Footwear</option>
+              <option value="Home & Kitchen">Home & Kitchen</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodFormBadge">Promotional Badge</label>
+            <input type="text" id="prodFormBadge" class="form-input" placeholder="e.g. Hot, Sale, Trending, New">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="prodFormPrice">Selling Price ($) *</label>
+            <input type="number" id="prodFormPrice" class="form-input" step="0.01" min="0" placeholder="149.99" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodFormOrigPrice">Original List Price ($)</label>
+            <input type="number" id="prodFormOrigPrice" class="form-input" step="0.01" min="0" placeholder="199.99">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="prodFormStock">Available Stock Count *</label>
+            <input type="number" id="prodFormStock" class="form-input" min="0" placeholder="25" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodFormImage">Photo URL (Unsplash / CDN)</label>
+            <input type="url" id="prodFormImage" class="form-input" placeholder="https://images.unsplash.com/...">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prodFormDesc">Product Description</label>
+          <textarea id="prodFormDesc" class="form-input" rows="3" placeholder="Enter key features and specifications..."></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="document.getElementById('btnCloseProductModal').click()">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 RJ Fashion Inc. Admin Management Console.</div>
+        <div>
+          <a href="index.html" style="color: var(--primary); font-weight: 600;">Return to Customer Shop</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

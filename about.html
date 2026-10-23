@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us & Our Mission | RJ Fashion</title>
+  <meta name="description" content="Learn about RJ Fashion's story, our pursuit of design excellence, verified product authenticity, and customer-first philosophy.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-truck-fast"></i> Free shipping on orders over $50</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="contact.html" class="top-bar-link"><i class="fa-regular fa-envelope"></i> Contact Us</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+          RJ <span>Fashion</span>
+        </a>
+
+        <div class="search-container">
+          <form class="search-form">
+            <input type="text" class="search-input" placeholder="Search products..." autocomplete="off">
+            <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+
+        <div class="header-actions">
+          <a href="wishlist.html" class="header-action-btn" aria-label="Wishlist">
+            <div class="header-icon-wrap">
+              <i class="fa-regular fa-heart"></i>
+              <span class="header-badge wishlist-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">Favorites</span>
+              <span class="header-action-label">Wishlist</span>
+            </div>
+          </a>
+
+          <a href="cart.html" class="header-action-btn" aria-label="Cart">
+            <div class="header-icon-wrap">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="header-badge cart-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">My Cart</span>
+              <span class="header-action-label">View</span>
+            </div>
+          </a>
+
+          <div class="user-menu-container" id="userMenuWrap"></div>
+
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-bar">
+      <div class="container">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="products.html" class="nav-link">All Products</a>
+          <a href="products.html?category=Electronics" class="nav-link">Electronics</a>
+          <a href="products.html?category=Fashion" class="nav-link">Fashion</a>
+          <a href="products.html?category=Watches" class="nav-link">Watches</a>
+          <a href="about.html" class="nav-link active">About Us</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div>
+          <a href="admin.html" class="admin-badge-link"><i class="fa-solid fa-shield-halved"></i> Admin Portal</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+        RJ <span>Fashion</span>
+      </a>
+      <button class="btn-icon" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="mobile-drawer-body">
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="products.html" class="mobile-nav-link">All Products</a>
+        <a href="cart.html" class="mobile-nav-link">My Cart</a>
+        <a href="wishlist.html" class="mobile-nav-link">Wishlist</a>
+        <a href="orders.html" class="mobile-nav-link">Order History</a>
+        <a href="about.html" class="mobile-nav-link active">About Us</a>
+        <a href="contact.html" class="mobile-nav-link">Contact Us</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <!-- About Hero -->
+    <section class="hero-section" style="padding: 4rem 0;">
+      <div class="container" style="text-align: center; max-width: 800px;">
+        <span class="hero-tag"><i class="fa-solid fa-star"></i> The RJ Fashion Story</span>
+        <h1 class="hero-title" style="font-size: 3rem;">
+          Crafting Seamless Shopping <span>Since 2022</span>
+        </h1>
+        <p class="hero-subtitle">
+          We believe premium design, exceptional engineering, and honest pricing should be accessible to everyone worldwide.
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="section">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+          <div>
+            <div class="section-subtitle">Our Purpose</div>
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Curation with Zero Compromises</h2>
+            <p style="color: #475569; font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+              RJ Fashion was founded on a simple premise: in a market flooded with mediocre mass-market goods, consumers deserve a dedicated space for meticulously engineered acoustics, durable luxury timepieces, and timeless apparel.
+            </p>
+            <p style="color: #475569; font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem;">
+              Every product in our catalog undergoes rigorous 4-step quality assurance before ever reaching our fulfillment centers. From materials durability testing to electrical compliance, we stand behind everything we ship.
+            </p>
+            <div style="display: flex; gap: 2rem;">
+              <div>
+                <strong style="font-size: 2.25rem; font-family: var(--font-heading); color: var(--primary);">50K+</strong>
+                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Happy Customers</div>
+              </div>
+              <div>
+                <strong style="font-size: 2.25rem; font-family: var(--font-heading); color: var(--primary);">99.8%</strong>
+                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">On-Time Delivery</div>
+              </div>
+              <div>
+                <strong style="font-size: 2.25rem; font-family: var(--font-heading); color: var(--primary);">4.9★</strong>
+                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Average Rating</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" alt="Team at Work" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); width: 100%;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header" style="justify-content: center; text-align: center;">
+          <div class="section-title-wrap">
+            <div class="section-subtitle">What We Stand For</div>
+            <h2 class="section-title">Our Guiding Pillars</h2>
+          </div>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-box" style="background: #ffffff; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+            <div class="feature-icon-wrap"><i class="fa-solid fa-gem"></i></div>
+            <div>
+              <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Authenticity First</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Direct partnerships with verified artisan workshops and certified manufacturers.</p>
+            </div>
+          </div>
+
+          <div class="feature-box" style="background: #ffffff; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+            <div class="feature-icon-wrap"><i class="fa-solid fa-leaf"></i></div>
+            <div>
+              <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Eco-Conscious Packaging</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">100% recyclable, biodegradable protective boxes and plastic-free parcel tape.</p>
+            </div>
+          </div>
+
+          <div class="feature-box" style="background: #ffffff; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+            <div class="feature-icon-wrap"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            <div>
+              <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Direct-to-Consumer</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Eliminating unnecessary middleman markups to pass substantial savings directly to you.</p>
+            </div>
+          </div>
+
+          <div class="feature-box" style="background: #ffffff; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+            <div class="feature-icon-wrap"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div>
+              <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Lifelong Support</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Dedicated concierge support team ready to assist with troubleshooting, repairs, or exchanges.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+            RJ <span>Fashion</span>
+          </a>
+          <p>Delivering authentic premium lifestyle, electronics, and fashion items worldwide with guaranteed satisfaction.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <div class="footer-links">
+            <a href="orders.html">Track Order</a>
+            <a href="cart.html">View Cart</a>
+            <a href="wishlist.html">Wishlist</a>
+            <a href="about.html">Shipping Policies</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="products.html">All Products</a>
+            <a href="products.html?category=Electronics">Electronics</a>
+            <a href="products.html?category=Watches">Watches</a>
+            <a href="products.html?category=Fashion">Fashion</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Admin Portal</h4>
+          <div class="footer-links">
+            <a href="admin.html">Manage Inventory</a>
+            <a href="admin.html">View Store Orders</a>
+            <a href="account.html">Account Settings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 RJ Fashion Inc. All rights reserved.</div>
+        <div class="payment-methods">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-paypal"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/firebase.js"></script>
+</body>
+</html>

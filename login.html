@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Login | RJ Fashion</title>
+  <meta name="description" content="Log in to your RJ Fashion account to track orders, manage your wishlist, and enjoy personalized shopping.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-truck-fast"></i> Free shipping on orders over $50</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="about.html" class="top-bar-link"><i class="fa-regular fa-circle-question"></i> Help Center</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+          RJ <span>Fashion</span>
+        </a>
+
+        <div class="search-container">
+          <form class="search-form">
+            <input type="text" class="search-input" placeholder="Search products..." autocomplete="off">
+            <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+
+        <div class="header-actions">
+          <a href="wishlist.html" class="header-action-btn" aria-label="Wishlist">
+            <div class="header-icon-wrap">
+              <i class="fa-regular fa-heart"></i>
+              <span class="header-badge wishlist-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">Favorites</span>
+              <span class="header-action-label">Wishlist</span>
+            </div>
+          </a>
+
+          <a href="cart.html" class="header-action-btn" aria-label="Cart">
+            <div class="header-icon-wrap">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="header-badge cart-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">My Cart</span>
+              <span class="header-action-label">View</span>
+            </div>
+          </a>
+
+          <div class="user-menu-container" id="userMenuWrap"></div>
+
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-bar">
+      <div class="container">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="products.html" class="nav-link">All Products</a>
+          <a href="products.html?category=Electronics" class="nav-link">Electronics</a>
+          <a href="products.html?category=Fashion" class="nav-link">Fashion</a>
+          <a href="products.html?category=Watches" class="nav-link">Watches</a>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div>
+          <a href="admin.html" class="admin-badge-link"><i class="fa-solid fa-shield-halved"></i> Admin Portal</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+        RJ <span>Fashion</span>
+      </a>
+      <button class="btn-icon" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="mobile-drawer-body">
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="products.html" class="mobile-nav-link">All Products</a>
+        <a href="cart.html" class="mobile-nav-link">My Cart</a>
+        <a href="wishlist.html" class="mobile-nav-link">Wishlist</a>
+        <a href="login.html" class="mobile-nav-link active">Sign In</a>
+        <a href="signup.html" class="mobile-nav-link">Create Account</a>
+        <a href="admin.html" class="mobile-nav-link">Admin Dashboard</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Login Main Content -->
+  <main class="auth-page-wrap">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2>Welcome Back</h2>
+        <p>Log in to access your orders, saved cart, and account profile</p>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email Address</label>
+          <div class="form-input-wrap">
+            <i class="fa-regular fa-envelope input-icon-left"></i>
+            <input type="email" id="loginEmail" class="form-input has-icon-left" placeholder="name@example.com" required>
+          </div>
+          <div class="form-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Password</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-lock input-icon-left"></i>
+            <input type="password" id="loginPassword" class="form-input has-icon-left has-icon-right" placeholder="••••••••" required>
+            <button type="button" class="btn-toggle-password" aria-label="Toggle password visibility">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <div class="form-error"></div>
+        </div>
+
+        <div class="form-row-between">
+          <label class="form-check">
+            <input type="checkbox" id="rememberMe" checked>
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="forgot-link" id="forgotPasswordBtn">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-auth-submit" id="btnLoginSubmit">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+        </button>
+      </form>
+
+      <div class="auth-switch-text">
+        Don't have an account? <a href="signup.html">Create one here</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 RJ Fashion Inc. All rights reserved.</div>
+        <div class="payment-methods">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-paypal"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

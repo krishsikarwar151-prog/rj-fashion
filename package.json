@@ -1,0 +1,22 @@
+{
+  "name": "shopnova",
+  "version": "1.0.0",
+  "description": "RJ Fashion - Modern Premium E-Commerce Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "ecommerce",
+    "store",
+    "vanilla-js",
+    "modern-css",
+    "html5"
+  ],
+  "author": "RJ Fashion Team",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^13.1.0"
+  }
+}

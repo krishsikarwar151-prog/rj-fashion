@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Products & Collections | RJ Fashion</title>
+  <meta name="description" content="Explore RJ Fashion's complete catalog of premium electronics, footwear, apparel, and watches. Filter by category, price, and customer rating.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-truck-fast"></i> Free shipping on orders over $50</span>
+        <span class="top-bar-promo"><i class="fa-solid fa-bolt"></i> Use code <strong>RJ20</strong> for 20% OFF</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="about.html" class="top-bar-link"><i class="fa-regular fa-circle-question"></i> Help & FAQ</a>
+        <a href="orders.html" class="top-bar-link"><i class="fa-solid fa-location-dot"></i> Track Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+          RJ <span>Fashion</span>
+        </a>
+
+        <div class="search-container">
+          <form class="search-form">
+            <input type="text" class="search-input" placeholder="Search products..." autocomplete="off">
+            <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+
+        <div class="header-actions">
+          <a href="wishlist.html" class="header-action-btn" aria-label="Wishlist">
+            <div class="header-icon-wrap">
+              <i class="fa-regular fa-heart"></i>
+              <span class="header-badge wishlist-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">Favorites</span>
+              <span class="header-action-label">Wishlist</span>
+            </div>
+          </a>
+
+          <a href="cart.html" class="header-action-btn" aria-label="Cart">
+            <div class="header-icon-wrap">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="header-badge cart-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">My Cart</span>
+              <span class="header-action-label">View</span>
+            </div>
+          </a>
+
+          <div class="user-menu-container" id="userMenuWrap"></div>
+
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-bar">
+      <div class="container">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="products.html" class="nav-link active">All Products</a>
+          <a href="products.html?category=Electronics" class="nav-link">Electronics</a>
+          <a href="products.html?category=Fashion" class="nav-link">Fashion</a>
+          <a href="products.html?category=Watches" class="nav-link">Watches</a>
+          <a href="products.html?category=Home%20%26%20Kitchen" class="nav-link">Home & Living</a>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div>
+          <a href="admin.html" class="admin-badge-link"><i class="fa-solid fa-shield-halved"></i> Admin Portal</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+        RJ <span>Fashion</span>
+      </a>
+      <button class="btn-icon" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="mobile-drawer-body">
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="products.html" class="mobile-nav-link active">All Products</a>
+        <a href="cart.html" class="mobile-nav-link">My Cart</a>
+        <a href="wishlist.html" class="mobile-nav-link">Wishlist</a>
+        <a href="orders.html" class="mobile-nav-link">Order History</a>
+        <a href="account.html" class="mobile-nav-link">My Account</a>
+        <a href="admin.html" class="mobile-nav-link">Admin Dashboard</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main Catalog Content -->
+  <main class="container" style="padding-top: 1rem; padding-bottom: 4rem;">
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <span class="separator">/</span>
+      <span class="active">Product Catalog</span>
+    </div>
+
+    <!-- Catalog Two-Column Layout -->
+    <div class="catalog-layout">
+      <!-- Sidebar Filters -->
+      <aside class="catalog-sidebar">
+        <div class="sidebar-header">
+          <h3><i class="fa-solid fa-sliders"></i> Filters</h3>
+          <button type="button" class="btn-reset-filters" id="resetFiltersBtn">Reset All</button>
+        </div>
+
+        <!-- Filter: Search Keyword -->
+        <div class="filter-group">
+          <div class="filter-title">Search in Catalog</div>
+          <div class="form-input-wrap">
+            <input type="text" id="sidebarSearchInput" class="form-input" placeholder="Keyword, brand, SKU..." style="font-size: 0.85rem; padding: 0.55rem 0.75rem;">
+          </div>
+        </div>
+
+        <!-- Filter: Categories -->
+        <div class="filter-group">
+          <div class="filter-title">Categories</div>
+          <div class="filter-options">
+            <label class="filter-label">
+              <input type="radio" name="categoryFilter" value="all" checked>
+              <span>All Categories</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="categoryFilter" value="Electronics">
+              <span>Electronics & Audio</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="categoryFilter" value="Watches">
+              <span>Luxury Watches</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="categoryFilter" value="Fashion">
+              <span>Fashion & Bags</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="categoryFilter" value="Footwear">
+              <span>Footwear & Shoes</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="categoryFilter" value="Home & Kitchen">
+              <span>Home & Kitchen</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Filter: Price Range -->
+        <div class="filter-group">
+          <div class="filter-title">Max Price</div>
+          <div class="price-slider-wrap">
+            <input type="range" class="range-slider" id="priceRangeSlider" min="20" max="500" step="10" value="500">
+            <div class="price-values-row">
+              <span class="price-box">$20</span>
+              <span class="price-box text-primary font-bold" id="maxPriceDisplay">$500</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter: Stock Status -->
+        <div class="filter-group">
+          <div class="filter-title">Availability</div>
+          <label class="filter-label">
+            <input type="checkbox" id="inStockOnlyFilter">
+            <span>In Stock Only</span>
+          </label>
+        </div>
+
+        <!-- Filter: Rating -->
+        <div class="filter-group">
+          <div class="filter-title">Minimum Rating</div>
+          <div class="filter-options">
+            <label class="filter-label">
+              <input type="radio" name="ratingFilter" value="0" checked>
+              <span>All Ratings</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="ratingFilter" value="4.8">
+              <span>4.8 & above ★★★★★</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="ratingFilter" value="4.5">
+              <span>4.5 & above ★★★★☆</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="ratingFilter" value="4.0">
+              <span>4.0 & above ★★★★☆</span>
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <section>
+        <!-- Toolbar: Results Count, Sort, View Toggle -->
+        <div class="catalog-toolbar">
+          <div class="results-count" id="resultsCountDisplay">
+            Loading products...
+          </div>
+          <div class="toolbar-actions">
+            <div class="sort-wrapper">
+              <label for="catalogSortSelect" class="text-muted">Sort by:</label>
+              <select id="catalogSortSelect" class="sort-select">
+                <option value="featured">Featured Picks</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+                <option value="newest">Newest Arrivals</option>
+                <option value="discount">Biggest Discount</option>
+              </select>
+            </div>
+            <div class="view-mode-buttons">
+              <button class="btn-view-mode active" id="btnGridView" title="Grid View" aria-label="Grid View"><i class="fa-solid fa-table-cells"></i></button>
+              <button class="btn-view-mode" id="btnListView" title="List View" aria-label="List View"><i class="fa-solid fa-list"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Filter Removable Tags -->
+        <div class="active-filters-wrap" id="activeFiltersWrap"></div>
+
+        <!-- Products Grid Container -->
+        <div class="products-grid" id="catalogProductsGrid">
+          <!-- Dynamically populated by products.js -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination" id="catalogPagination"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+            RJ <span>Fashion</span>
+          </a>
+          <p>Delivering authentic premium lifestyle, electronics, and fashion items worldwide with guaranteed satisfaction.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <div class="footer-links">
+            <a href="orders.html">Track Order</a>
+            <a href="cart.html">View Cart</a>
+            <a href="wishlist.html">Wishlist</a>
+            <a href="about.html">Shipping Policies</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="products.html">All Products</a>
+            <a href="products.html?category=Electronics">Electronics</a>
+            <a href="products.html?category=Watches">Watches</a>
+            <a href="products.html?category=Fashion">Fashion</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Admin Portal</h4>
+          <div class="footer-links">
+            <a href="admin.html">Manage Inventory</a>
+            <a href="admin.html">View Store Orders</a>
+            <a href="account.html">Account Settings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 RJ Fashion Inc. All rights reserved.</div>
+        <div class="payment-methods">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-paypal"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

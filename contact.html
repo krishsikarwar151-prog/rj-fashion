@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us & FAQ | RJ Fashion</title>
+  <meta name="description" content="Get in touch with RJ Fashion's customer concierge team or read our answers to frequently asked questions.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3.5rem;
+      margin-bottom: 4rem;
+    }
+    .contact-info-card {
+      background: #ffffff;
+      padding: 2.25rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-method {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      transition: var(--transition);
+    }
+    .faq-question:hover {
+      background: var(--bg-alt);
+      color: var(--primary);
+    }
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem;
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      display: none;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+    .faq-icon {
+      transition: transform 0.25s ease;
+      color: var(--primary);
+    }
+    @media (max-width: 992px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-truck-fast"></i> Free shipping on orders over $50</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="about.html" class="top-bar-link"><i class="fa-regular fa-circle-question"></i> Help Center</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+          RJ <span>Fashion</span>
+        </a>
+
+        <div class="search-container">
+          <form class="search-form">
+            <input type="text" class="search-input" placeholder="Search products..." autocomplete="off">
+            <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+
+        <div class="header-actions">
+          <a href="wishlist.html" class="header-action-btn" aria-label="Wishlist">
+            <div class="header-icon-wrap">
+              <i class="fa-regular fa-heart"></i>
+              <span class="header-badge wishlist-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">Favorites</span>
+              <span class="header-action-label">Wishlist</span>
+            </div>
+          </a>
+
+          <a href="cart.html" class="header-action-btn" aria-label="Cart">
+            <div class="header-icon-wrap">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="header-badge cart-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">My Cart</span>
+              <span class="header-action-label">View</span>
+            </div>
+          </a>
+
+          <div class="user-menu-container" id="userMenuWrap"></div>
+
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-bar">
+      <div class="container">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="products.html" class="nav-link">All Products</a>
+          <a href="products.html?category=Electronics" class="nav-link">Electronics</a>
+          <a href="products.html?category=Fashion" class="nav-link">Fashion</a>
+          <a href="products.html?category=Watches" class="nav-link">Watches</a>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="contact.html" class="nav-link active">Contact</a>
+        </div>
+        <div>
+          <a href="admin.html" class="admin-badge-link"><i class="fa-solid fa-shield-halved"></i> Admin Portal</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+        RJ <span>Fashion</span>
+      </a>
+      <button class="btn-icon" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="mobile-drawer-body">
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="products.html" class="mobile-nav-link">All Products</a>
+        <a href="cart.html" class="mobile-nav-link">My Cart</a>
+        <a href="wishlist.html" class="mobile-nav-link">Wishlist</a>
+        <a href="orders.html" class="mobile-nav-link">Order History</a>
+        <a href="about.html" class="mobile-nav-link">About Us</a>
+        <a href="contact.html" class="mobile-nav-link active">Contact Us</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main Contact Content -->
+  <main class="container" style="padding-top: 1.5rem; padding-bottom: 5rem;">
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+      <a href="index.html">Home</a>
+      <span class="separator">/</span>
+      <span class="active">Contact Us</span>
+    </div>
+
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-subtitle">24/7 Concierge Support</div>
+        <h1 class="section-title">We'd Love to Hear From You</h1>
+      </div>
+    </div>
+
+    <!-- Contact Grid (Info Cards + Form) -->
+    <div class="contact-grid">
+      <!-- Info Left Card -->
+      <div class="contact-info-card">
+        <h3 style="margin-bottom: 1.5rem;">Get in Touch</h3>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
+          Have questions regarding shipping times, international customs, bulk orders, or warranty claims? Our specialists respond within 2-4 business hours.
+        </p>
+
+        <div class="contact-method">
+          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <strong style="display: block; font-size: 0.95rem;">Global Flagship HQ</strong>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">100 Nova Center, 42nd Fl, New York, NY 10001</span>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <strong style="display: block; font-size: 0.95rem;">Email Inquiries</strong>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">support@rjfashion.com / orders@rjfashion.com</span>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <strong style="display: block; font-size: 0.95rem;">Direct Concierge Phone</strong>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">+1 (800) 555-RJFASHION (Mon-Fri 8am-8pm EST)</span>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+          <div>
+            <strong style="display: block; font-size: 0.95rem;">Operating Hours</strong>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">24 Hours / 7 Days Online Customer Care</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Message Form -->
+      <div class="contact-info-card">
+        <h3 style="margin-bottom: 1.5rem;">Send a Message</h3>
+        <form id="contactForm">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="contactName">Your Name *</label>
+              <input type="text" id="contactName" class="form-input" placeholder="Emma Watson" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contactEmail">Your Email *</label>
+              <input type="email" id="contactEmail" class="form-input" placeholder="emma@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactSubject">Subject *</label>
+            <input type="text" id="contactSubject" class="form-input" placeholder="Order inquiry, sizing, or general question..." required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactMessage">Message *</label>
+            <textarea id="contactMessage" class="form-input" rows="5" placeholder="How can our customer concierge team help you today?" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion Section -->
+    <div style="margin-top: 4rem;">
+      <div class="section-header" style="justify-content: center; text-align: center;">
+        <div class="section-title-wrap">
+          <div class="section-subtitle">Quick Answers</div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+      </div>
+
+      <div class="faq-accordion" style="max-width: 800px; margin: 0 auto;">
+        <div class="faq-item active">
+          <div class="faq-question">
+            <span>How fast is global shipping, and how do I track my order?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            Orders placed on weekdays before 2:00 PM EST ship same-day from our fulfillment facilities. Standard shipping typically takes 2-4 business days within North America and 4-7 business days internationally. You can track your real-time status under the <a href="orders.html" style="color:var(--primary); font-weight:600;">Track Order</a> page.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What is your 30-Day Money-Back Guarantee policy?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            We offer unconditional returns within 30 days of delivery. As long as items are in their original packaging with proof of purchase, we provide a prepaid return label and issue a 100% refund upon receipt.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Are the smartwatches and electronics covered under warranty?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            Yes! All electronics and timepieces purchased through RJ Fashion come standard with a comprehensive 2-Year International Manufacturer Warranty covering manufacturing defects and electrical malfunctions.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Which promotional discount coupon codes can I use?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            You can use <strong>RJ20</strong> for 20% off your entire cart, <strong>SAVE10</strong> for a flat $10 discount, or <strong>FREESHIP</strong> for complimentary priority delivery! Enter any of these codes during cart review or checkout.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+            RJ <span>Fashion</span>
+          </a>
+          <p>Delivering authentic premium lifestyle, electronics, and fashion items worldwide with guaranteed satisfaction.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <div class="footer-links">
+            <a href="orders.html">Track Order</a>
+            <a href="cart.html">View Cart</a>
+            <a href="wishlist.html">Wishlist</a>
+            <a href="about.html">Shipping Policies</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="products.html">All Products</a>
+            <a href="products.html?category=Electronics">Electronics</a>
+            <a href="products.html?category=Watches">Watches</a>
+            <a href="products.html?category=Fashion">Fashion</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Admin Portal</h4>
+          <div class="footer-links">
+            <a href="admin.html">Manage Inventory</a>
+            <a href="admin.html">View Store Orders</a>
+            <a href="account.html">Account Settings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 RJ Fashion Inc. All rights reserved.</div>
+        <div class="payment-methods">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-paypal"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/firebase.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // FAQ Accordion Toggle
+      const faqItems = document.querySelectorAll(".faq-item");
+      faqItems.forEach(item => {
+        const question = item.querySelector(".faq-question");
+        question.addEventListener("click", () => {
+          const isActive = item.classList.contains("active");
+          faqItems.forEach(i => i.classList.remove("active"));
+          if (!isActive) item.classList.add("active");
+        });
+      });
+
+      // Contact Form Submission
+      const contactForm = document.getElementById("contactForm");
+      if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("contactName").value.trim();
+          const toast = window.RJFashionToast || window.ShopNovaToast;
+          toast.show(`Thank you, ${name}! Your message has been received by our support team.`, "success");
+          contactForm.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

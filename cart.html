@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart | RJ Fashion</title>
+  <meta name="description" content="Review your selected items, apply promotional discount coupons, and proceed to secure checkout.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-truck-fast"></i> Free shipping on orders over $50</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="about.html" class="top-bar-link"><i class="fa-regular fa-circle-question"></i> Help Center</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+          RJ <span>Fashion</span>
+        </a>
+
+        <div class="search-container">
+          <form class="search-form">
+            <input type="text" class="search-input" placeholder="Search products..." autocomplete="off">
+            <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+
+        <div class="header-actions">
+          <a href="wishlist.html" class="header-action-btn" aria-label="Wishlist">
+            <div class="header-icon-wrap">
+              <i class="fa-regular fa-heart"></i>
+              <span class="header-badge wishlist-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">Favorites</span>
+              <span class="header-action-label">Wishlist</span>
+            </div>
+          </a>
+
+          <a href="cart.html" class="header-action-btn" aria-label="Cart">
+            <div class="header-icon-wrap">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="header-badge cart-badge" style="display: none;">0</span>
+            </div>
+            <div class="header-action-text">
+              <span class="header-action-sub">My Cart</span>
+              <span class="header-action-label">View</span>
+            </div>
+          </a>
+
+          <div class="user-menu-container" id="userMenuWrap"></div>
+
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-bar">
+      <div class="container">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="products.html" class="nav-link">All Products</a>
+          <a href="products.html?category=Electronics" class="nav-link">Electronics</a>
+          <a href="products.html?category=Fashion" class="nav-link">Fashion</a>
+          <a href="products.html?category=Watches" class="nav-link">Watches</a>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div>
+          <a href="admin.html" class="admin-badge-link"><i class="fa-solid fa-shield-halved"></i> Admin Portal</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+        RJ <span>Fashion</span>
+      </a>
+      <button class="btn-icon" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="mobile-drawer-body">
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="products.html" class="mobile-nav-link">All Products</a>
+        <a href="cart.html" class="mobile-nav-link active">My Cart</a>
+        <a href="wishlist.html" class="mobile-nav-link">Wishlist</a>
+        <a href="orders.html" class="mobile-nav-link">Order History</a>
+        <a href="account.html" class="mobile-nav-link">My Account</a>
+        <a href="admin.html" class="mobile-nav-link">Admin Dashboard</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Cart Page Content -->
+  <main class="container" style="padding-top: 1rem; padding-bottom: 4rem;">
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+      <a href="index.html">Home</a>
+      <span class="separator">/</span>
+      <span class="active">Shopping Cart</span>
+    </div>
+
+    <h1 style="font-size: 2rem; margin-bottom: 2rem;">Shopping Cart</h1>
+
+    <!-- Empty Cart State -->
+    <div class="empty-state" id="emptyCartState" style="display: none;">
+      <div class="empty-state-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+      <h3>Your shopping cart is empty</h3>
+      <p>Looks like you haven't added anything to your cart yet. Explore our curated collections to find what you love.</p>
+      <a href="products.html" class="btn btn-primary btn-lg">
+        <i class="fa-solid fa-arrow-left"></i> Start Shopping
+      </a>
+    </div>
+
+    <!-- Active Cart Two-Column Layout -->
+    <div class="cart-layout" id="cartLayoutWrap">
+      <!-- Items Table Card -->
+      <div class="cart-items-card">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product Details</th>
+              <th>Unit Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th style="text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="cartItemsTbody">
+            <!-- Dynamically populated by cart.js -->
+          </tbody>
+        </table>
+
+        <!-- Cart Table Bottom Actions -->
+        <div class="cart-actions-bar">
+          <a href="products.html" class="btn btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+          </a>
+          <button type="button" class="btn btn-outline" id="clearCartBtn" style="color: var(--danger); border-color: #fecaca;">
+            <i class="fa-regular fa-trash-can"></i> Clear Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Order Summary Card -->
+      <aside class="summary-card">
+        <h3 class="summary-title">Order Summary</h3>
+
+        <!-- Coupon Code Form -->
+        <form class="coupon-box" id="cartCouponForm">
+          <input type="text" class="coupon-input" id="cartCouponInput" placeholder="Promo code (e.g. RJ20)">
+          <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+        </form>
+
+        <!-- Applied Coupon Banner -->
+        <div id="appliedCouponContainer"></div>
+
+        <div class="summary-rows">
+          <div class="summary-row">
+            <span class="text-muted">Subtotal</span>
+            <strong id="cartSubtotalDisplay">$0.00</strong>
+          </div>
+
+          <div class="summary-row" id="cartDiscountRow" style="display: none; color: var(--success);">
+            <span>Coupon Discount</span>
+            <strong id="cartDiscountDisplay">-$0.00</strong>
+          </div>
+
+          <div class="summary-row">
+            <span class="text-muted">Estimated Shipping</span>
+            <strong id="cartShippingDisplay">$0.00</strong>
+          </div>
+
+          <div class="summary-row">
+            <span class="text-muted">Estimated Tax (8%)</span>
+            <strong id="cartTaxDisplay">$0.00</strong>
+          </div>
+
+          <div class="summary-row total-row">
+            <span>Estimated Total</span>
+            <span class="text-primary" id="cartTotalDisplay">$0.00</span>
+          </div>
+        </div>
+
+        <a href="checkout.html" class="btn btn-primary" style="width: 100%; padding: 0.95rem; font-size: 1.05rem;">
+          <i class="fa-solid fa-lock"></i> Proceed to Checkout
+        </a>
+
+        <div style="margin-top: 1.5rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <i class="fa-solid fa-shield-halved" style="color: var(--success); font-size: 1rem;"></i>
+          256-Bit SSL Encrypted Checkout Guarantee
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <div class="container">
+        <div>&copy; 2026 RJ Fashion Inc. All rights reserved.</div>
+        <div class="payment-methods">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-paypal"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>
